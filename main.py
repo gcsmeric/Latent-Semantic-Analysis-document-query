@@ -179,44 +179,7 @@ def get_idf_values(documents, stopwords):
         d[vocab[j]]=np.log10(len(documents)/(word_contained[j]+1))+1
         #(i,j) cell should have tf-idf score of ith doc and jth word in vocab
 
-    #I was having a similar issue. Make sure youre using the formula from the wikipedia page for idf: idf = np.log10((N) / (n + 1)) + 1
     return d
-    '''return 
-    # This part is ungraded, however, to test your code, you'll need to implement this function
-    # If you have implemented create_tfidf_matrix, this implementation should be straightforward
-    documents_processed = []
-    vocab_set = set()
-    for i in range(len(documents)):
-        documents_processed.append([])
-        for w in documents[i]:
-            wlow = w.lower()
-            if not wlow in stopwords and w.isalnum():
-                documents_processed[i].append(wlow)
-                vocab_set.add(wlow)
-    vocab = sorted(list(vocab_set))
-    
-    #counting words per doc
-    unigram_counts = [{} for _ in range(len(documents))]
-    for i in range(len(unigram_counts)):
-        for j in range(len(vocab)):
-            unigram_counts[i][vocab[j]] = 0
-
-    for i in range(len(documents_processed)):
-        for w in documents_processed[i]:
-            unigram_counts[i][w]+=1
-    #finding portion of docs containing each word
-    word_contained = []
-    for i in range(len(vocab)):
-        word_contained.append(0)
-        for j in range(len(documents)):
-            if unigram_counts[j][vocab[i]]>0:
-                word_contained[i]+=1
-
-    d = {}
-    for i in range(len(vocab)):
-        d[vocab[i]] = (np.log10(len(documents)/(word_contained[i]+1))+1)
-    
-    return d'''
 
 def calculate_sparsity(tfidf_matrix):
     total = 0
